@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التصنيفات - GameZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(rgba(18,18,18,0.8), rgba(18,18,18,0.95)), url('categories_hero_background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .categories-main {
+            padding: 5rem 0;
+        }
+
+        .cat-grid-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cat-card-main {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+        }
+
+        .cat-bg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cat-card-main:hover .cat-bg {
+            transform: scale(1.1);
+        }
+
+        .cat-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover .cat-overlay {
+            background: linear-gradient(to top, rgba(212, 175, 55, 0.85) 0%, rgba(0,0,0,0.3) 100%);
+        }
+
+        .cat-icon-main {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover .cat-icon-main {
+            color: var(--bg-dark);
+        }
+
+        .cat-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover .cat-name {
+            color: var(--bg-dark);
+        }
+
+        .cat-count {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover .cat-count {
+            color: var(--bg-dark);
+        }
+
+        .cat-arrow {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--bg-dark);
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s ease;
+        }
+
+        .cat-card-main:hover .cat-arrow {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .popular-section {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5rem; }
+            .cat-grid-main { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Game<span>Zone</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="games.html">الألعاب</a></li>
+                    <li><a href="categories.html" class="active">التصنيفات</a></li>
+                    <li><a href="top-games.html">أفضل الألعاب</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <label class="theme-label" for="themeToggle" title="تبديل الوضع">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>تصنيفات الألعاب</h1>
+            <p>استعرض الألعاب حسب تصنيفها وابحث عن ما يناسبك</p>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>التصنيفات</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories-main">
+        <div class="container">
+            <h2 class="section-title">جميع التصنيفات</h2>
+            <div class="cat-grid-main">
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="action_category.png" alt="أكشن" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-bolt cat-icon-main"></i>
+                        <h3 class="cat-name">أكشن</h3>
+                        <p class="cat-count">85 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="rpg_category.png" alt="RPG" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-hat-wizard cat-icon-main"></i>
+                        <h3 class="cat-name">تقمص أدوار</h3>
+                        <p class="cat-count">120 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="adventure_category.png" alt="مغامرة" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-map-location-dot cat-icon-main"></i>
+                        <h3 class="cat-name">مغامرة</h3>
+                        <p class="cat-count">95 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="strategy_category.png" alt="إستراتيجية" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-chess cat-icon-main"></i>
+                        <h3 class="cat-name">إستراتيجية</h3>
+                        <p class="cat-count">60 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="horror_category.png" alt="رعب" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-skull cat-icon-main"></i>
+                        <h3 class="cat-name">رعب</h3>
+                        <p class="cat-count">45 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="sports_category.png" alt="رياضة" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-futbol cat-icon-main"></i>
+                        <h3 class="cat-name">رياضة</h3>
+                        <p class="cat-count">40 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="racing_category.png" alt="سباق" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-flag-checkered cat-icon-main"></i>
+                        <h3 class="cat-name">سباق</h3>
+                        <p class="cat-count">35 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+                <a href="games.html" class="cat-card-main">
+                    <img src="indie_category.png" alt="مستقلة" class="cat-bg">
+                    <div class="cat-overlay">
+                        <i class="fa-solid fa-star cat-icon-main"></i>
+                        <h3 class="cat-name">مستقلة</h3>
+                        <p class="cat-count">70 لعبة</p>
+                    </div>
+                    <div class="cat-arrow">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="popular-section">
+        <div class="container">
+            <h2 class="section-title">الأكثر شعبية في كل تصنيف</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="dark_fantasy_rpg.png" alt="Dark Fantasy RPG">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Dark Fantasy RPG</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Fantasy RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="game-desc">الأفضل في تصنيف ألعاب الأدوار لعام 2026.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="horizon_open_world.png" alt="Horizon Open World">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Horizon: Open World</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Open World</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="game-desc">الأفضل في تصنيف ألعاب المغامرة لعام 2026.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="menace_scifi_tactical.png" alt="Menace Tactical">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Menace: Sci-Fi Tactical</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Tactical</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <p class="game-desc">الأفضل في تصنيف الإستراتيجية لعام 2026.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GameZone</h3>
+                    <p style="color: var(--text-muted); margin-bottom:1.5rem;">المنصة العربية الأولى المتخصصة في مراجعات وتقييمات ألعاب الفيديو بشكل احترافي وموضوعي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الرئيسية</a></li>
+                        <li><a href="games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الألعاب</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> التصنيفات</a></li>
+                        <li><a href="top-games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> أفضل الألعاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تصنيفات الألعاب</h3>
+                    <ul class="footer-links">
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الأكشن</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب RPG</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الرياضة</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب المغامرة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links" style="color: var(--text-muted);">
+                        <li><i class="fa-solid fa-envelope" style="color:var(--primary-color); margin-left:0.5rem;"></i> info@gamezone.com</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-phone" style="color:var(--primary-color); margin-left:0.5rem;"></i> +966 50 000 0000</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-left:0.5rem;"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>                <p>جميع الحقوق محفوظة &copy; 2026 GameZone</p> - موقع مراجعات الألعاب</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

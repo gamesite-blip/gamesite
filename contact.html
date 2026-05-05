@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - GameZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.95)), url('contact_us_background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .contact-section {
+            padding: 5rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .info-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--primary-color);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--bg-dark);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-text p {
+            color: var(--text-muted);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .contact-form-wrapper {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 3rem;
+        }
+
+        .contact-form-wrapper h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .faq-section {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-color);
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .social-contact {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .social-contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-contact p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .social-big {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-big-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 2rem;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            width: 150px;
+            transition: all 0.4s ease;
+        }
+
+        .social-big-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        .social-big-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: all 0.4s ease;
+        }
+
+        .social-big-item:hover i {
+            color: var(--bg-dark);
+        }
+
+        .social-big-item span {
+            font-weight: 700;
+        }
+
+        @media (max-width: 991px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form-wrapper { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Game<span>Zone</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="games.html">الألعاب</a></li>
+                    <li><a href="categories.html">التصنيفات</a></li>
+                    <li><a href="top-games.html">أفضل الألعاب</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                    <li><a href="contact.html" class="active">تواصل معنا</a></li>
+                </ul>
+                <label class="theme-label" for="themeToggle" title="تبديل الوضع">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>تواصل معنا</h1>
+            <p>نحن هنا للإجابة على جميع استفساراتك واقتراحاتك</p>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>تواصل معنا</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>معلومات التواصل</h2>
+                    <p>يسعدنا التواصل معك في أي وقت. سواء كان لديك سؤال أو اقتراح أو رغبة في التعاون، فريقنا جاهز للرد عليك.</p>
+                    <div class="info-cards">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>البريد الإلكتروني</h4>
+                                <p>info@gamezone.com</p>
+                                <p>support@gamezone.com</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>رقم الهاتف</h4>
+                                <p>+966 50 000 0000</p>
+                                <p>متاح من 9 صباحاً حتى 9 مساءً</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>العنوان</h4>
+                                <p>الرياض، المملكة العربية السعودية</p>
+                                <p>حي التقنية، برج الإبداع</p>
+                            </div>
+                        </div>
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>ساعات العمل</h4>
+                                <p>السبت - الخميس: 9ص - 9م</p>
+                                <p>الجمعة: مغلق</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h2><i class="fa-solid fa-paper-plane" style="color:var(--primary-color);"></i> أرسل لنا رسالة</h2>
+                    <form action="#" method="post">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:1.5rem;">
+                            <label for="subject">الموضوع</label>
+                            <select id="subject" name="subject" class="form-control">
+                                <option value="">اختر موضوع الرسالة</option>
+                                <option value="review">طلب مراجعة لعبة</option>
+                                <option value="suggestion">اقتراح أو ملاحظة</option>
+                                <option value="partnership">طلب شراكة أو تعاون</option>
+                                <option value="technical">مشكلة تقنية</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-top:1.5rem;">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" class="form-control" placeholder="اكتب رسالتك هنا..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-paper-plane"></i> إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> كيف يتم تقييم الألعاب؟</h3>
+                    <p>نعتمد نظام تقييم شامل يأخذ بعين الاعتبار أسلوب اللعب، الرسومات، القصة، الصوت والموسيقى، والقيمة الترفيهية الإجمالية.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> هل يمكنني اقتراح لعبة للمراجعة؟</h3>
+                    <p>نعم، يمكنك إرسال اقتراحك عبر نموذج التواصل أعلاه أو عبر حساباتنا على وسائل التواصل الاجتماعي.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> هل التقييمات موضوعية ومستقلة؟</h3>
+                    <p>نعم، جميع مراجعاتنا مستقلة تماماً ولا تتأثر بأي جهة خارجية. نلتزم بأعلى معايير الموضوعية والنزاهة.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> كيف يمكنني الانضمام للفريق؟</h3>
+                    <p>إذا كنت ناقداً متخصصاً أو كاتباً محترفاً في مجال الألعاب، تواصل معنا عبر البريد الإلكتروني مع نماذج من أعمالك.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> هل تغطون جميع الأجهزة؟</h3>
+                    <p>نعم، نغطي جميع الأجهزة الرئيسية بما فيها PC، PlayStation، Xbox، وNintendo Switch.</p>
+                </div>
+                <div class="faq-item">
+                    <h3><i class="fa-solid fa-circle-question"></i> كم مرة يتم تحديث الموقع؟</h3>
+                    <p>نحدث الموقع يومياً بمراجعات وأخبار جديدة لضمان حصولك على أحدث المعلومات في عالم الألعاب.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-contact">
+        <div class="container">
+            <h2>تابعنا على وسائل التواصل</h2>
+            <p>ابق على اطلاع دائم بأحدث المراجعات والأخبار عبر منصاتنا</p>
+            <div class="social-big">
+                <a href="#" class="social-big-item">
+                    <i class="fa-brands fa-twitter"></i>
+                    <span>تويتر</span>
+                </a>
+                <a href="#" class="social-big-item">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>انستغرام</span>
+                </a>
+                <a href="#" class="social-big-item">
+                    <i class="fa-brands fa-youtube"></i>
+                    <span>يوتيوب</span>
+                </a>
+                <a href="#" class="social-big-item">
+                    <i class="fa-brands fa-discord"></i>
+                    <span>ديسكورد</span>
+                </a>
+                <a href="#" class="social-big-item">
+                    <i class="fa-brands fa-tiktok"></i>
+                    <span>تيك توك</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GameZone</h3>
+                    <p style="color: var(--text-muted); margin-bottom:1.5rem;">المنصة العربية الأولى المتخصصة في مراجعات وتقييمات ألعاب الفيديو بشكل احترافي وموضوعي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الرئيسية</a></li>
+                        <li><a href="games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الألعاب</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> التصنيفات</a></li>
+                        <li><a href="top-games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> أفضل الألعاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تصنيفات الألعاب</h3>
+                    <ul class="footer-links">
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الأكشن</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب RPG</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الرياضة</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب المغامرة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links" style="color: var(--text-muted);">
+                        <li><i class="fa-solid fa-envelope" style="color:var(--primary-color); margin-left:0.5rem;"></i> info@gamezone.com</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-phone" style="color:var(--primary-color); margin-left:0.5rem;"></i> +966 50 000 0000</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-left:0.5rem;"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>                <p>جميع الحقوق محفوظة &copy; 2026 GameZone</p> - موقع مراجعات الألعاب</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
