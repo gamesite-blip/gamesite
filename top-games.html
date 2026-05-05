@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أفضل الألعاب - GameZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(rgba(18,18,18,0.7), rgba(18,18,18,0.95)), url('best_games_background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .top-section {
+            padding: 5rem 0;
+        }
+
+        .top-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .top-item {
+            display: grid;
+            grid-template-columns: 80px 200px 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .top-item:hover {
+            border-color: var(--primary-color);
+            transform: translateX(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .rank-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--border-color);
+            text-align: center;
+            line-height: 1;
+        }
+
+        .top-item:nth-child(1) .rank-number { color: #FFD700; }
+        .top-item:nth-child(2) .rank-number { color: #C0C0C0; }
+        .top-item:nth-child(3) .rank-number { color: #CD7F32; }
+
+        .top-img {
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .top-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .top-item:hover .top-img img {
+            transform: scale(1.05);
+        }
+
+        .top-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .top-info p {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .top-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .top-tag {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .top-score {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .score-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 0.5rem;
+            color: var(--bg-dark);
+        }
+
+        .score-num {
+            font-size: 1.5rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-txt {
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .top-score .rating {
+            font-size: 0.9rem;
+            justify-content: center;
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .yearly-awards {
+            padding: 5rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .award-card {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .award-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .award-img {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .award-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .award-card:hover .award-img img {
+            transform: scale(1.05);
+        }
+
+        .award-body {
+            padding: 1.5rem;
+        }
+
+        .award-badge {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .award-body h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 991px) {
+            .top-item {
+                grid-template-columns: 60px 150px 1fr;
+            }
+            .top-score {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5rem; }
+            .top-item {
+                grid-template-columns: 50px 1fr;
+            }
+            .top-img {
+                display: none;
+            }
+            .top-info h3 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Game<span>Zone</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="games.html">الألعاب</a></li>
+                    <li><a href="categories.html">التصنيفات</a></li>
+                    <li><a href="top-games.html" class="active">أفضل الألعاب</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <label class="theme-label" for="themeToggle" title="تبديل الوضع">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>أفضل الألعاب</h1>
+            <p>            <p>قائمة أفضل ألعاب الفيديو لعام 2026 بحسب تقييمات النقاد والمستخدمين</p></p>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>أفضل الألعاب</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="top-section">
+        <div class="container">
+            <h2 class="section-title">أفضل 10 ألعاب لعام 2026</h2>
+            <div class="top-list">
+
+                <div class="top-item">
+                    <div class="rank-number">#1</div>
+                    <div class="top-img">
+                        <img src="horizon_open_world.png" alt="Horizon Open World">
+                    </div>
+                    <div class="top-info">
+                        <h3>Horizon: Open World</h3>
+                        <p>تحفة فنية في عالم الألعاب المفتوحة بتجربة بصرية مذهلة وقصة شيقة لا تُنسى.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Open World</span>
+                            <span class="top-tag">PS5</span>
+                            <span class="top-tag">PC</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">10</span>
+                            <span class="score-txt">مثالي</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#2</div>
+                    <div class="top-img">
+                        <img src="ffvii_rebirth.png" alt="Final Fantasy VII Rebirth">
+                    </div>
+                    <div class="top-info">
+                        <h3>Final Fantasy VII Rebirth</h3>
+                        <p>عودة أسطورية لأيقونة الألعاب الكلاسيكية بحلة بصرية مذهلة وقصة أعمق من أي وقت مضى.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Action RPG</span>
+                            <span class="top-tag">PS5</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">9.8</span>
+                            <span class="score-txt">استثنائي</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#3</div>
+                    <div class="top-img">
+                        <img src="dark_fantasy_rpg.png" alt="Dark Fantasy RPG">
+                    </div>
+                    <div class="top-info">
+                        <h3>Dark Fantasy RPG</h3>
+                        <p>تجربة لعب استثنائية في عالم مظلم مليء بالمخلوقات الأسطورية والتحديات الملحمية.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Fantasy RPG</span>
+                            <span class="top-tag">PC</span>
+                            <span class="top-tag">PS5</span>
+                            <span class="top-tag">Xbox</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">9.5</span>
+                            <span class="score-txt">ممتاز</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#4</div>
+                    <div class="top-img">
+                        <img src="metaphor_refantazio.png" alt="Metaphor ReFantazio">
+                    </div>
+                    <div class="top-info">
+                        <h3>Metaphor: ReFantazio</h3>
+                        <p>رحلة ملحمية في عالم خيالي مذهل مع نظام قتال استراتيجي فريد من نوعه.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">JRPG</span>
+                            <span class="top-tag">PC</span>
+                            <span class="top-tag">PS5</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">9.2</span>
+                            <span class="score-txt">ممتاز</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#5</div>
+                    <div class="top-img">
+                        <img src="crimson_desert.png" alt="Crimson Desert">
+                    </div>
+                    <div class="top-info">
+                        <h3>Crimson Desert</h3>
+                        <p>عالم مفتوح ضخم مع قصة درامية مؤثرة وأسلوب قتال متطور ومبهر.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Action RPG</span>
+                            <span class="top-tag">PC</span>
+                            <span class="top-tag">PS5</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">8.8</span>
+                            <span class="score-txt">رائع</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#6</div>
+                    <div class="top-img">
+                        <img src="menace_scifi_tactical.png" alt="Menace Tactical">
+                    </div>
+                    <div class="top-info">
+                        <h3>Menace: Sci-Fi Tactical</h3>
+                        <p>لعبة تكتيكية خيال علمي مثيرة مع نظام قتال معقد وقصة مشوقة.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Tactical RPG</span>
+                            <span class="top-tag">PC</span>
+                            <span class="top-tag">Xbox</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">8.5</span>
+                            <span class="score-txt">رائع</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#7</div>
+                    <div class="top-img">
+                        <img src="dark_fantasy_origins.png" alt="Dark Fantasy Origins">
+                    </div>
+                    <div class="top-info">
+                        <h3>Dark Fantasy: Origins</h3>
+                        <p>مغامرة في عالم مظلم مليء بالمخلوقات الأسطورية والتحديات الملحمية الكبرى.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Fantasy</span>
+                            <span class="top-tag">PC</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">8.0</span>
+                            <span class="score-txt">جيد جداً</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top-item">
+                    <div class="rank-number">#8</div>
+                    <div class="top-img">
+                        <img src="indie_dark_fantasy.png" alt="Indie Dark Fantasy">
+                    </div>
+                    <div class="top-info">
+                        <h3>Indie Dark Fantasy</h3>
+                        <p>لعبة مستقلة مميزة تقدم تجربة فريدة في عالم الخيال المظلم بأسلوب فني رائع.</p>
+                        <div class="top-tags">
+                            <span class="top-tag">Indie RPG</span>
+                            <span class="top-tag">PC</span>
+                            <span class="top-tag">Switch</span>
+                        </div>
+                    </div>
+                    <div class="top-score">
+                        <div class="score-circle">
+                            <span class="score-num">7.5</span>
+                            <span class="score-txt">جيد</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="yearly-awards">
+        <div class="container">
+            <h2 class="section-title">جوائز أفضل الألعاب 2026</h2>
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="award-img">
+                        <img src="horizon_open_world.png" alt="لعبة العام">
+                    </div>
+                    <div class="award-body">
+                        <span class="award-badge"><i class="fa-solid fa-trophy"></i> لعبة العام</span>
+                        <h3>Horizon: Open World</h3>
+                        <p>الفائز بجائزة لعبة العام 2026 بإجماع النقاد والمستخدمين.</p>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <div class="award-img">
+                        <img src="ffvii_rebirth.png" alt="أفضل قصة">
+                    </div>
+                    <div class="award-body">
+                        <span class="award-badge"><i class="fa-solid fa-book"></i> أفضل قصة</span>
+                        <h3>Final Fantasy VII Rebirth</h3>
+                        <p>الفائز بجائزة أفضل قصة في لعبة فيديو لعام 2026.</p>
+                    </div>
+                </div>
+                <div class="award-card">
+                    <div class="award-img">
+                        <img src="dark_fantasy_rpg.png" alt="أفضل رسومات">
+                    </div>
+                    <div class="award-body">
+                        <span class="award-badge"><i class="fa-solid fa-palette"></i> أفضل رسومات</span>
+                        <h3>Dark Fantasy RPG</h3>
+                        <p>الفائز بجائزة أفضل رسومات بصرية في لعبة فيديو لعام 2026.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GameZone</h3>
+                    <p style="color: var(--text-muted); margin-bottom:1.5rem;">المنصة العربية الأولى المتخصصة في مراجعات وتقييمات ألعاب الفيديو.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الرئيسية</a></li>
+                        <li><a href="games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الألعاب</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> التصنيفات</a></li>
+                        <li><a href="top-games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> أفضل الألعاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links" style="color: var(--text-muted);">
+                        <li><i class="fa-solid fa-envelope" style="color:var(--primary-color); margin-left:0.5rem;"></i> info@gamezone.com</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-left:0.5rem;"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>                <p>جميع الحقوق محفوظة &copy; 2026 GameZone</p></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
