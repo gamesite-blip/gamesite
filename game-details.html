@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Fantasy RPG - مراجعة - GameZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .details-hero {
+            height: 65vh;
+            min-height: 500px;
+            background-image: linear-gradient(to bottom, rgba(18,18,18,0.3) 0%, rgba(18,18,18,0.95) 100%), url('dark_fantasy_rpg.png');
+            background-size: cover;
+            background-position: center top;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 3rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .details-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .details-meta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        .details-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .details-meta i {
+            color: var(--primary-color);
+        }
+
+        .score-box {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--bg-dark);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .score-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            display: block;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding: 4rem 0;
+        }
+
+        .review-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 2.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .review-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .review-images img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .review-images img:hover {
+            transform: scale(1.02);
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .pros-box, .cons-box {
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .pros-box {
+            border-top: 3px solid #4CAF50;
+        }
+
+        .cons-box {
+            border-top: 3px solid #f44336;
+        }
+
+        .pros-box h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .cons-box h3 {
+            color: #f44336;
+            margin-bottom: 1rem;
+        }
+
+        .pros-box li, .cons-box li {
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+
+        .pros-box li::before {
+            content: '+';
+            position: absolute;
+            right: 0;
+            color: #4CAF50;
+            font-weight: 700;
+        }
+
+        .cons-box li::before {
+            content: '-';
+            position: absolute;
+            right: 0;
+            color: #f44336;
+            font-weight: 700;
+        }
+
+        .rating-breakdown {
+            margin: 2rem 0;
+        }
+
+        .rating-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .rating-label {
+            width: 120px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .rating-bar-wrapper {
+            flex: 1;
+            background-color: var(--border-color);
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .rating-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+        }
+
+        .rating-score {
+            width: 40px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .sidebar-box {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-box h3 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .meta-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .meta-list li:last-child {
+            border: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+        }
+
+        .meta-value {
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .related-games {
+            padding: 4rem 0;
+            background-color: var(--bg-light);
+        }
+
+        @media (max-width: 991px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+            .details-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .details-hero {
+                height: 50vh;
+            }
+            .details-title {
+                font-size: 2rem;
+            }
+            .review-images {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Game<span>Zone</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="games.html" class="active">الألعاب</a></li>
+                    <li><a href="categories.html">التصنيفات</a></li>
+                    <li><a href="top-games.html">أفضل الألعاب</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <label class="theme-label" for="themeToggle" title="تبديل الوضع">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <section class="details-hero">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <a href="games.html">الألعاب</a>
+                <span>/</span>
+                <span>Dark Fantasy RPG</span>
+            </div>
+            <div class="details-header">
+                <div>
+                    <h1 class="details-title">Dark Fantasy RPG</h1>
+                    <div class="rating" style="font-size:1.5rem;">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <div class="details-meta">
+                        <span><i class="fa-solid fa-calendar"></i> 15 مارس 2026</span>
+                        <span><i class="fa-solid fa-tag"></i> Fantasy RPG</span>
+                        <span><i class="fa-solid fa-desktop"></i> PC, PS5, Xbox</span>
+                        <span><i class="fa-solid fa-user"></i> بقلم: الناقد المتخصص</span>
+                    </div>
+                </div>
+                <div class="score-box">
+                    <span class="score-number">9.5</span>
+                    <span class="score-label">تقييم استثنائي</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="review-content">
+                <h2>نظرة عامة</h2>
+                <p>تُعدّ لعبة Dark Fantasy RPG من أبرز الإصدارات في عام 2026، إذ تقدم تجربة لعب استثنائية تجمع بين عالم مفتوح شاسع وقصة درامية مؤثرة. منذ اللحظة الأولى التي تضع فيها يدك على وحدة التحكم، ستجد نفسك منغمساً في عالم مظلم مليء بالأسرار والتحديات.</p>
+                <p>طوّر الاستوديو المطوّر هذه اللعبة على مدى خمس سنوات كاملة، وهو ما يظهر جلياً في كل تفصيلة من تفاصيل العالم الافتراضي، بدءاً من تصميم الشخصيات الدقيق وصولاً إلى الموسيقى التصويرية الرائعة التي تُعزز من الأجواء الدرامية للعبة.</p>
+
+                <div class="review-images">
+                    <img src="df_rpg_character.png" alt="لقطة شاشة 1">
+                    <img src="df_rpg_combat.png" alt="لقطة شاشة 2">
+                    <img src="df_rpg_monster.png" alt="لقطة شاشة 3">
+                    <img src="df_rpg_world.png" alt="لقطة شاشة 4">
+                </div>
+
+                <h2>أسلوب اللعب</h2>
+                <p>يعتمد أسلوب اللعب على نظام قتال هجين يمزج بين الحركة السريعة والتكتيك الاستراتيجي. يمكنك تخصيص شخصيتك بشكل كامل، من اختيار فئة المحارب إلى تطوير مهاراتها الخاصة. نظام الحرفة والتطوير غني ومعقد بما يكفي لإبقائك منشغلاً لعشرات الساعات.</p>
+                <p>البيئة التفاعلية تضيف بُعداً إضافياً للتجربة، إذ يمكنك التفاعل مع معظم عناصر العالم، واستخدام البيئة المحيطة لصالحك في المعارك. كما أن نظام الاختيارات والقرارات يؤثر بشكل مباشر على مسار القصة ونهايتها.</p>
+
+                <h2>الرسومات والصوت</h2>
+                <p>تُقدّم اللعبة رسومات بصرية مذهلة تستغل كامل إمكانيات الأجهزة الحديثة. تأثيرات الإضاءة والظلال تخلق أجواء سينمائية رائعة، فيما تبرز دقة التفاصيل في تصميم الشخصيات والبيئات بشكل لافت للنظر.</p>
+                <p>الأداء الصوتي لا مثيل له، مع تمثيل صوتي احترافي لجميع الشخصيات الرئيسية والثانوية. الموسيقى التصويرية من تأليف أحد أبرز ملحني ألعاب الفيديو، وتُضفي على اللعبة طابعاً ملحمياً فريداً.</p>
+
+                <h2>تفاصيل التقييم</h2>
+                <div class="rating-breakdown">
+                    <div class="rating-item">
+                        <span class="rating-label">أسلوب اللعب</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar" style="width: 95%;"></div>
+                        </div>
+                        <span class="rating-score">9.5</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-label">الرسومات</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar" style="width: 98%;"></div>
+                        </div>
+                        <span class="rating-score">9.8</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-label">القصة</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar" style="width: 90%;"></div>
+                        </div>
+                        <span class="rating-score">9.0</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-label">الصوت والموسيقى</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar" style="width: 96%;"></div>
+                        </div>
+                        <span class="rating-score">9.6</span>
+                    </div>
+                    <div class="rating-item">
+                        <span class="rating-label">القيمة الترفيهية</span>
+                        <div class="rating-bar-wrapper">
+                            <div class="rating-bar" style="width: 92%;"></div>
+                        </div>
+                        <span class="rating-score">9.2</span>
+                    </div>
+                </div>
+
+                <div class="pros-cons">
+                    <div class="pros-box">
+                        <h3><i class="fa-solid fa-circle-check"></i> الإيجابيات</h3>
+                        <ul>
+                            <li>عالم مفتوح شاسع ومتنوع</li>
+                            <li>قصة درامية مؤثرة</li>
+                            <li>رسومات بصرية مذهلة</li>
+                            <li>نظام قتال متطور</li>
+                            <li>موسيقى تصويرية رائعة</li>
+                        </ul>
+                    </div>
+                    <div class="cons-box">
+                        <h3><i class="fa-solid fa-circle-xmark"></i> السلبيات</h3>
+                        <ul>
+                            <li>بعض مشاكل الأداء عند البداية</li>
+                            <li>منحنى تعلم حاد للمبتدئين</li>
+                            <li>بعض المهام الجانبية مكررة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h2>الحكم النهائي</h2>
+                <p>تُعدّ Dark Fantasy RPG من أفضل الألعاب التي صدرت في السنوات الأخيرة. تجمع بين عمق القصة وجمال الرسومات وإتقان أسلوب اللعب لتقدم تجربة لا تُنسى. إذا كنت من محبي ألعاب الأدوار والعوالم المفتوحة، فهذه اللعبة لا غنى عنها في مكتبتك.</p>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-box">
+                    <h3><i class="fa-solid fa-circle-info"></i> معلومات اللعبة</h3>
+                    <ul class="meta-list">
+                        <li>
+                            <span class="meta-label">المطوّر</span>
+                            <span class="meta-value">Dark Studio</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">الناشر</span>
+                            <span class="meta-value">Fantasy Games</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">تاريخ الإصدار</span>
+                            <span class="meta-value">15 مارس 2026</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">التصنيف العمري</span>
+                            <span class="meta-value">+18</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">التصنيف</span>
+                            <span class="meta-value">Fantasy RPG</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">الأجهزة</span>
+                            <span class="meta-value">PC, PS5, Xbox</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">اللغات</span>
+                            <span class="meta-value">عربي، إنجليزي</span>
+                        </li>
+                        <li>
+                            <span class="meta-label">السعر</span>
+                            <span class="meta-value" style="color:var(--primary-color);">249 ريال</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3><i class="fa-solid fa-trophy"></i> التقييم الإجمالي</h3>
+                    <div style="text-align:center; padding: 1rem 0;">
+                        <div style="font-size:5rem; font-weight:900; color:var(--primary-color); line-height:1;">9.5</div>
+                        <div class="rating" style="font-size:1.5rem; justify-content:center; display:flex; gap:0.3rem; margin:0.5rem 0;">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p style="color:var(--primary-color); font-weight:700; font-size:1.2rem;">تقييم استثنائي</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <h3><i class="fa-solid fa-share-nodes"></i> مشاركة المراجعة</h3>
+                    <div class="social-links" style="justify-content:center;">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="related-games">
+        <div class="container">
+            <h2 class="section-title">ألعاب مشابهة</h2>
+            <div class="games-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="crimson_desert.png" alt="Crimson Desert">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Crimson Desert</h3>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem; margin-top:1rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="dark_fantasy_origins.png" alt="Dark Fantasy Origins">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Dark Fantasy: Origins</h3>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem; margin-top:1rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="ffvii_rebirth.png" alt="Final Fantasy VII">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <h3 class="game-title">Final Fantasy VII Rebirth</h3>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem; margin-top:1rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GameZone</h3>
+                    <p style="color: var(--text-muted); margin-bottom:1.5rem;">المنصة العربية الأولى المتخصصة في مراجعات وتقييمات ألعاب الفيديو بشكل احترافي وموضوعي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الرئيسية</a></li>
+                        <li><a href="games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الألعاب</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> التصنيفات</a></li>
+                        <li><a href="top-games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> أفضل الألعاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تصنيفات الألعاب</h3>
+                    <ul class="footer-links">
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الأكشن</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب RPG</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الرياضة</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب المغامرة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links" style="color: var(--text-muted);">
+                        <li><i class="fa-solid fa-envelope" style="color:var(--primary-color); margin-left:0.5rem;"></i> info@gamezone.com</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-phone" style="color:var(--primary-color); margin-left:0.5rem;"></i> +966 50 000 0000</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-left:0.5rem;"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>                <p>جميع الحقوق محفوظة &copy; 2026 GameZone</p> - موقع مراجعات الألعاب</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
