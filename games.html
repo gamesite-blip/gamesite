@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الألعاب - GameZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(rgba(18,18,18,0.8), rgba(18,18,18,0.95)), url('games_page_background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+        }
+
+        .filters-bar {
+            background-color: var(--bg-light);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 72px;
+            z-index: 100;
+        }
+
+        .filters-inner {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        .games-section {
+            padding: 4rem 0;
+        }
+
+        .games-count {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .score-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--bg-dark);
+            font-weight: 900;
+            font-size: 1.2rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        .game-img-wrapper {
+            position: relative;
+        }
+
+        .platform-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .platform-tag {
+            background-color: var(--bg-dark);
+            color: var(--text-muted);
+            padding: 0.2rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .page-btn {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            font-weight: 700;
+        }
+
+        .page-btn:hover,
+        .page-btn.active {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--bg-dark);
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 2.5rem; }
+            .filters-inner { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Game<span>Zone</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="games.html" class="active">الألعاب</a></li>
+                    <li><a href="categories.html">التصنيفات</a></li>
+                    <li><a href="top-games.html">أفضل الألعاب</a></li>
+                    <li><a href="about.html">عن الموقع</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+                <label class="theme-label" for="themeToggle" title="تبديل الوضع">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </label>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>جميع الألعاب</h1>
+            <p>استعرض مئات المراجعات الاحترافية لأشهر الألعاب</p>
+            <div class="breadcrumb">
+                <a href="index.html">الرئيسية</a>
+                <span>/</span>
+                <span>الألعاب</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="filters-bar">
+        <div class="container">
+            <div class="filters-inner">
+                <span style="color: var(--primary-color); font-weight: 700;"><i class="fa-solid fa-filter"></i> تصفية:</span>
+                <button class="filter-btn active">الكل</button>
+                <button class="filter-btn">أكشن</button>
+                <button class="filter-btn">RPG</button>
+                <button class="filter-btn">مغامرة</button>
+                <button class="filter-btn">رياضة</button>
+                <button class="filter-btn">إستراتيجية</button>
+                <button class="filter-btn">رعب</button>
+                <button class="filter-btn">سباق</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="games-section">
+        <div class="container">
+            <p class="games-count"><i class="fa-solid fa-layer-group" style="color:var(--primary-color);"></i> عرض <strong>12</strong> لعبة من أصل <strong>500+</strong></p>
+            <div class="games-grid">
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="dark_fantasy_rpg.png" alt="Dark Fantasy RPG">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">9.5</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                            <span class="platform-tag">PS5</span>
+                            <span class="platform-tag">Xbox</span>
+                        </div>
+                        <h3 class="game-title">Dark Fantasy RPG</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Fantasy RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="game-desc">تجربة لعب استثنائية في عالم مظلم مليء بالمخلوقات الأسطورية والتحديات الملحمية.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="metaphor_refantazio.png" alt="Metaphor ReFantazio">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">9.0</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                            <span class="platform-tag">PS5</span>
+                        </div>
+                        <h3 class="game-title">Metaphor: ReFantazio</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> JRPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="game-desc">رحلة ملحمية في عالم خيالي مذهل مع نظام قتال استراتيجي فريد من نوعه.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="ffvii_rebirth.png" alt="Final Fantasy VII Rebirth">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">9.2</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PS5</span>
+                            <span class="platform-tag">PC</span>
+                        </div>
+                        <h3 class="game-title">Final Fantasy VII Rebirth</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Action RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="game-desc">عودة أسطورية لأيقونة الألعاب الكلاسيكية بحلة بصرية مذهلة وقصة أعمق.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="menace_scifi_tactical.png" alt="Menace Sci-Fi">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">8.5</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                            <span class="platform-tag">Xbox</span>
+                        </div>
+                        <h3 class="game-title">Menace: Sci-Fi Tactical</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Tactical RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <p class="game-desc">لعبة تكتيكية خيال علمي مثيرة مع نظام قتال معقد وقصة مشوقة.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="horizon_open_world.png" alt="Horizon Open World">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">10</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PS5</span>
+                            <span class="platform-tag">PC</span>
+                        </div>
+                        <h3 class="game-title">Horizon: Open World</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Open World</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="game-desc">تحفة فنية في عالم الألعاب المفتوحة بتجربة بصرية مذهلة وقصة شيقة.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="crimson_desert.png" alt="Crimson Desert">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">8.8</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                            <span class="platform-tag">PS5</span>
+                            <span class="platform-tag">Xbox</span>
+                        </div>
+                        <h3 class="game-title">Crimson Desert</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Action RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <p class="game-desc">عالم مفتوح ضخم مع قصة درامية مؤثرة وأسلوب قتال متطور ومبهر.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="dark_fantasy_origins.png" alt="Dark Fantasy RPG 2">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">8.0</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                        </div>
+                        <h3 class="game-title">Dark Fantasy: Origins</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Fantasy</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <p class="game-desc">مغامرة في عالم مظلم مليء بالمخلوقات الأسطورية والتحديات الملحمية الكبرى.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-img-wrapper">
+                        <img src="indie_dark_fantasy.png" alt="Indie Dark Fantasy">
+                        <div class="game-overlay">
+                            <a href="game-details.html" class="play-btn">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
+                        </div>
+                        <span class="score-badge">7.5</span>
+                    </div>
+                    <div class="game-info">
+                        <div class="platform-tags">
+                            <span class="platform-tag">PC</span>
+                            <span class="platform-tag">Switch</span>
+                        </div>
+                        <h3 class="game-title">Indie Dark Fantasy</h3>
+                        <div class="game-meta">
+                            <span><i class="fa-solid fa-tag"></i> Indie RPG</span>
+                            <span>2026</span>
+                        </div>
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star star-empty"></i>
+                        </div>
+                        <p class="game-desc">لعبة مستقلة مميزة تقدم تجربة فريدة في عالم الخيال المظلم بأسلوب فني رائع.</p>
+                        <a href="game-details.html" class="btn" style="font-size:0.9rem; padding:0.6rem 1.5rem;">اقرأ المراجعة</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-btn"><i class="fa-solid fa-chevron-right"></i></a>
+                <a href="#" class="page-btn active">1</a>
+                <a href="#" class="page-btn">2</a>
+                <a href="#" class="page-btn">3</a>
+                <span class="page-btn" style="border:none;">...</span>
+                <a href="#" class="page-btn">10</a>
+                <a href="#" class="page-btn"><i class="fa-solid fa-chevron-left"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>GameZone</h3>
+                    <p style="color: var(--text-muted); margin-bottom:1.5rem;">المنصة العربية الأولى المتخصصة في مراجعات وتقييمات ألعاب الفيديو بشكل احترافي وموضوعي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الرئيسية</a></li>
+                        <li><a href="games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> الألعاب</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> التصنيفات</a></li>
+                        <li><a href="top-games.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> أفضل الألعاب</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تصنيفات الألعاب</h3>
+                    <ul class="footer-links">
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الأكشن</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب RPG</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب الرياضة</a></li>
+                        <li><a href="categories.html"><i class="fa-solid fa-chevron-left" style="color:var(--primary-color); font-size:0.8rem;"></i> ألعاب المغامرة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links" style="color: var(--text-muted);">
+                        <li><i class="fa-solid fa-envelope" style="color:var(--primary-color); margin-left:0.5rem;"></i> info@gamezone.com</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-phone" style="color:var(--primary-color); margin-left:0.5rem;"></i> +966 50 000 0000</li>
+                        <li style="margin-top:0.8rem;"><i class="fa-solid fa-location-dot" style="color:var(--primary-color); margin-left:0.5rem;"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>                <p>جميع الحقوق محفوظة &copy; 2026 GameZone</p> - موقع مراجعات الألعاب</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
